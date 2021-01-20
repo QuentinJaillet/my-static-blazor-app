@@ -20,9 +20,7 @@ namespace Api
         }
 
         [FunctionName("ProductsPut")]
-        public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "products")] HttpRequest req,
-            ILogger log)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "products")] HttpRequest req, ILogger log)
         {
             var body = await new StreamReader(req.Body).ReadToEndAsync();
             var product = JsonSerializer.Deserialize<Product>(body, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
